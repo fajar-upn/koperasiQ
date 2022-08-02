@@ -1,0 +1,10 @@
+<ifmodule mod_rewrite.c>
+ RewriteEngine On
+ RewriteBase /kopwan
+ RewriteCond %{REQUEST_FILENAME} !-f
+ RewriteCond %{REQUEST_FILENAME} !-d
+ RewriteRule ^(.*)$ /kopwan/index.php/$1 [L]
+</ifmodule>
+<ifmodule !mod_rewrite.c>
+ ErrorDocument 404 /kopwan/index.php
+</ifmodule>
