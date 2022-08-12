@@ -178,7 +178,7 @@ class Admin extends CI_Controller{
 			$image = $uploaded_data['file_name'];
 			
 			/**
-			 * Note terdapat bug apabila 'required' pada input image dihilangkan melalui inspect emlement
+			 * Note terdapat bug apabila 'required' pada input image dihilangkan melalui inspect element
 			 */
 			if ($this->upload->do_upload('foto') == False){
 				$this->session->set_flashdata('pesan_gagal','foto gagal ditambahkan');
