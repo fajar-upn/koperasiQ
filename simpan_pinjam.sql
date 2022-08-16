@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 01 Jun 2022 pada 15.24
--- Versi server: 10.4.17-MariaDB
--- Versi PHP: 7.4.14
+-- Generation Time: Aug 16, 2022 at 07:43 AM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,30 +24,35 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `anggota`
+-- Table structure for table `anggota`
 --
 
 CREATE TABLE `anggota` (
   `id_anggota` varchar(10) NOT NULL,
   `nama` varchar(100) NOT NULL,
   `alamat` varchar(150) NOT NULL,
+  `foto` varchar(100) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `password` varchar(50) NOT NULL,
+  `role` varchar(10) NOT NULL,
   `status` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `anggota`
+-- Dumping data for table `anggota`
 --
 
-INSERT INTO `anggota` (`id_anggota`, `nama`, `alamat`, `status`) VALUES
-('A-00001', 'Menink', 'Sampang', 'Aktif'),
-('A-00002', 'Ari', 'Nganjuk', 'Aktif'),
-('A-00003', 'Sinta', 'Rembang', 'Aktif'),
-('A-00004', 'Hendy', 'Madiun', 'Aktif');
+INSERT INTO `anggota` (`id_anggota`, `nama`, `alamat`, `foto`, `email`, `password`, `role`, `status`) VALUES
+('A-00001', 'Menink', 'Sampang', NULL, NULL, '', '', 'Aktif'),
+('A-00002', 'Ari', 'Nganjuk', NULL, NULL, '', '', 'Aktif'),
+('A-00003', 'Sinta', 'Rembang', NULL, NULL, '', '', 'Aktif'),
+('A-00004', 'Hendy', 'Madiun', NULL, NULL, '', '', 'Aktif'),
+('A-00006', 'Fajar', 'madiun', 'foto-A-00006', 'muhammadfajar1183@gmail.com', '5f4dcc3b5aa765d61d8327deb882cf99', 'anggota', 'Aktif');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `angsuran`
+-- Table structure for table `angsuran`
 --
 
 CREATE TABLE `angsuran` (
@@ -63,7 +68,7 @@ CREATE TABLE `angsuran` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `angsuran`
+-- Dumping data for table `angsuran`
 --
 
 INSERT INTO `angsuran` (`id_angsuran`, `bukti_transaksi_an`, `id_pinjaman`, `id_anggota`, `tanggal`, `periode_angsuran`, `nominal`, `jasa`, `keterangan`) VALUES
@@ -79,7 +84,7 @@ INSERT INTO `angsuran` (`id_angsuran`, `bukti_transaksi_an`, `id_pinjaman`, `id_
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `daftar_akun`
+-- Table structure for table `daftar_akun`
 --
 
 CREATE TABLE `daftar_akun` (
@@ -91,7 +96,7 @@ CREATE TABLE `daftar_akun` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `daftar_akun`
+-- Dumping data for table `daftar_akun`
 --
 
 INSERT INTO `daftar_akun` (`kode_akun`, `akun`, `pos_laporan`, `pos_akun`, `saldo_normal`) VALUES
@@ -129,7 +134,7 @@ INSERT INTO `daftar_akun` (`kode_akun`, `akun`, `pos_laporan`, `pos_akun`, `sald
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pinjaman`
+-- Table structure for table `pinjaman`
 --
 
 CREATE TABLE `pinjaman` (
@@ -145,7 +150,7 @@ CREATE TABLE `pinjaman` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `pinjaman`
+-- Dumping data for table `pinjaman`
 --
 
 INSERT INTO `pinjaman` (`id_pinjaman`, `bukti_transaksi_p`, `id_anggota`, `nominal`, `tanggal_pinjam`, `provisi`, `lama_angsur`, `keterangan`, `status_pinjam`) VALUES
@@ -157,7 +162,7 @@ INSERT INTO `pinjaman` (`id_pinjaman`, `bukti_transaksi_p`, `id_anggota`, `nomin
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `saldo_awal`
+-- Table structure for table `saldo_awal`
 --
 
 CREATE TABLE `saldo_awal` (
@@ -173,7 +178,7 @@ CREATE TABLE `saldo_awal` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `saldo_awal`
+-- Dumping data for table `saldo_awal`
 --
 
 INSERT INTO `saldo_awal` (`id`, `kode_akun`, `keterangan`, `tanggal_transaksi`, `pos_laporan`, `akun`, `debit`, `kredit`, `pos_akun`) VALUES
@@ -187,7 +192,7 @@ INSERT INTO `saldo_awal` (`id`, `kode_akun`, `keterangan`, `tanggal_transaksi`, 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `simpanan`
+-- Table structure for table `simpanan`
 --
 
 CREATE TABLE `simpanan` (
@@ -200,7 +205,7 @@ CREATE TABLE `simpanan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `simpanan`
+-- Dumping data for table `simpanan`
 --
 
 INSERT INTO `simpanan` (`id_simpanan`, `bukti_transaksi_s`, `id_anggota`, `saldo`, `jenis_simpanan`, `tanggal`) VALUES
@@ -212,7 +217,7 @@ INSERT INTO `simpanan` (`id_simpanan`, `bukti_transaksi_s`, `id_anggota`, `saldo
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `transaksi`
+-- Table structure for table `transaksi`
 --
 
 CREATE TABLE `transaksi` (
@@ -232,7 +237,7 @@ CREATE TABLE `transaksi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `transaksi`
+-- Dumping data for table `transaksi`
 --
 
 INSERT INTO `transaksi` (`id`, `kode_akun`, `keterangan`, `tanggal_transaksi`, `pos_saldo`, `pos_laporan`, `bukti_transaksi`, `bukti_transaksi_kop`, `akun`, `debit`, `kredit`, `pos_akun`, `ref`) VALUES
@@ -290,7 +295,7 @@ INSERT INTO `transaksi` (`id`, `kode_akun`, `keterangan`, `tanggal_transaksi`, `
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -302,7 +307,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id_user`, `username`, `password`, `nama`, `role`) VALUES
@@ -314,83 +319,83 @@ INSERT INTO `user` (`id_user`, `username`, `password`, `nama`, `role`) VALUES
 --
 
 --
--- Indeks untuk tabel `anggota`
+-- Indexes for table `anggota`
 --
 ALTER TABLE `anggota`
   ADD PRIMARY KEY (`id_anggota`);
 
 --
--- Indeks untuk tabel `angsuran`
+-- Indexes for table `angsuran`
 --
 ALTER TABLE `angsuran`
   ADD PRIMARY KEY (`id_angsuran`);
 
 --
--- Indeks untuk tabel `daftar_akun`
+-- Indexes for table `daftar_akun`
 --
 ALTER TABLE `daftar_akun`
   ADD PRIMARY KEY (`kode_akun`);
 
 --
--- Indeks untuk tabel `pinjaman`
+-- Indexes for table `pinjaman`
 --
 ALTER TABLE `pinjaman`
   ADD PRIMARY KEY (`id_pinjaman`);
 
 --
--- Indeks untuk tabel `saldo_awal`
+-- Indexes for table `saldo_awal`
 --
 ALTER TABLE `saldo_awal`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `simpanan`
+-- Indexes for table `simpanan`
 --
 ALTER TABLE `simpanan`
   ADD PRIMARY KEY (`id_simpanan`);
 
 --
--- Indeks untuk tabel `transaksi`
+-- Indexes for table `transaksi`
 --
 ALTER TABLE `transaksi`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `angsuran`
+-- AUTO_INCREMENT for table `angsuran`
 --
 ALTER TABLE `angsuran`
   MODIFY `id_angsuran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT untuk tabel `pinjaman`
+-- AUTO_INCREMENT for table `pinjaman`
 --
 ALTER TABLE `pinjaman`
   MODIFY `id_pinjaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `saldo_awal`
+-- AUTO_INCREMENT for table `saldo_awal`
 --
 ALTER TABLE `saldo_awal`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT untuk tabel `simpanan`
+-- AUTO_INCREMENT for table `simpanan`
 --
 ALTER TABLE `simpanan`
   MODIFY `id_simpanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `transaksi`
+-- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
