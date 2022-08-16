@@ -20,6 +20,24 @@ function anggota(){
 	}
 }
 
+function angka_pembulatan($angka,$digit,$minimal){
+
+	 $digitvalue=substr($angka,-($digit));  $bulat=0;
+	 $nolnol="";
+	 for($i=1;$i<=$digit;$i++){
+	 	$nolnol.="0";
+	 }
+
+	 if($digitvalue<$minimal && $digit!=$nolnol){
+	 	$x1=$minimal-$digitvalue;
+	 	$bulat=$angka+$x1;
+	 }
+	 else{
+	 	$bulat=$angka;
+	 }
+	 return $bulat; 
+}
+
 function rupiah($angka){
 
 	if ($angka < 0) {

@@ -78,7 +78,72 @@ class Anggota extends CI_Controller{
 				}
 			}
 		}
+	}
+
+	//====================================================KALKULATOR SIMULASI===========================================================
+	public function sim_simpanan(){
+
+		$data['user'] = $_SESSION['nama'];
+		$data['judul'] = "Simulasi Simpanan";
 		
+		$this->form_validation->set_rules('simpanan','Simpanan','required');
+		$this->form_validation->set_rules('bulan','Bulan','required');
+		
+		if ($this->form_validation->run() ==  FALSE) {
+			$data['bayar'] = 0;
+			$data['simpanan'] = 0;
+			$this->load->view('tempanggota/header');
+			$this->load->view('tempanggota/sidebar', $data);
+			$this->load->view('anggota/v_sim_simpanan', $data);
+			$this->load->view('tempanggota/footer');
+		}
+		else {
+			$simpanan = $this->input->post('simpanan');
+			$bulan = $this->input->post('bulan');
+			$bunga = $this->input->post('bunga');
+
+			$bayar = ceil(($simpanan/$bulan)+($simpanan*$bunga/100));
+			$data['bayar'] = angka_pembulatan($bayar,4,10000);
+
+			$this->load->view('tempanggota/header');
+			$this->load->view('tempanggota/sidebar', $data);
+			$this->load->view('anggota/v_sim_simpanan', $data);
+			$this->load->view('tempanggota/footer');
+		}
 
 	}
+
+	public function sim_pinjaman(){
+
+		$data['user'] = $_SESSION['nama'];
+		$data['judul'] = "Simulasi Pinjaman";
+		
+		$this->form_validation->set_rules('pinjaman','Pinjaman','required');
+		$this->form_validation->set_rules('bulan','Bulan','required');
+		
+		if ($this->form_validation->run() ==  FALSE) {
+			$data['bayar'] = 0;
+			$data['pinjaman'] = 0;
+			$this->load->view('tempanggota/header');
+			$this->load->view('tempanggota/sidebar', $data);
+			$this->load->view('anggota/v_sim_pinjaman', $data);
+			$this->load->view('tempanggota/footer');
+		}
+		else {
+			$pinjaman = $this->input->post('pinjaman');
+			$bulan = $this->input->post('bulan');
+			$bunga = $this->input->post('bunga');
+
+			$bayar = ceil(($pinjaman/$bulan)+($pinjaman*$bunga/100));
+			$data['bayar'] = angka_pembulatan($bayar,4,10000);
+			$data['pinjaman'] = $pinjaman;
+
+			$this->load->view('tempanggota/header');
+			$this->load->view('tempanggota/sidebar', $data);
+			$this->load->view('anggota/v_sim_pinjaman', $data);
+			$this->load->view('tempanggota/footer');
+		}
+	}
+
+	//================================================END KALKULATOR SIMULASI===========================================================
 }

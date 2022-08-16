@@ -79,6 +79,23 @@
               </li>
             </ul>
           </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-fw fa-calculator"></i>
+              <p>
+                Kalkulator
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a class="nav-link" href="<?php echo base_url('anggota/sim_simpanan')?>"><i class="fa fa-angle-right nav-icon"></i><p>Simulasi Simpanan</p></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="<?php echo base_url('anggota/sim_pinjaman')?>"><i class="fa fa-angle-right nav-icon"></i><p>Simulasi Pinjaman</p></a>
+              </li>
+            </ul>
+          </li>
         </ul>
         
         
