@@ -14,11 +14,11 @@
             </div>
             <div class="col-12 col-sm-12 col-md-4">
                 <label>Jumlah Pinjaman yang Diinginkan (Rupiah)</label>
-                <input type="number" class="form-control" name="pinjaman" required>
+                <input type="number" class="form-control" name="pinjaman" min="500000" max="100000000" required>
             </div>
              <div class="col-12 col-sm-12 col-md-4">
                 <label>Jangka Waktu (Per Bulan)</label>
-                <input type="number" class="form-control" name="bulan" required>
+                <input type="number" class="form-control" name="bulan" min="0" max="12" required>
             </div>
           </div>
           <div class="row mt-1 mb-4 ml-1 mr-1" style="background: #f7f7f7;">
