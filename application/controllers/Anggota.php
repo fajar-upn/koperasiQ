@@ -90,8 +90,10 @@ class Anggota extends CI_Controller{
 		$this->form_validation->set_rules('bulan','Bulan','required');
 		
 		if ($this->form_validation->run() ==  FALSE) {
-			$data['bayar'] = 0;
 			$data['simpanan'] = 0;
+			$data['terima'] = 0;
+			$data['jatuh_tempo'] = 0;
+			$data['total'] = 0;
 			$this->load->view('tempanggota/header');
 			$this->load->view('tempanggota/sidebar', $data);
 			$this->load->view('anggota/v_sim_simpanan', $data);
@@ -100,10 +102,21 @@ class Anggota extends CI_Controller{
 		else {
 			$simpanan = $this->input->post('simpanan');
 			$bulan = $this->input->post('bulan');
-			$bunga = $this->input->post('bunga');
+			$b = $this->input->post('bunga');
+			$bunga = $b/100;
+			$data['simpanan'] = $simpanan;
 
-			$bayar = ceil(($simpanan/$bulan)+($simpanan*$bunga/100));
-			$data['bayar'] = angka_pembulatan($bayar,4,10000);
+			if ($bulan != 12) {
+				$temp = $bulan/12*$bunga;
+				$data['terima'] = ceil($simpanan/$bulan*$temp);
+				$data['jatuh_tempo'] = $simpanan + ceil($simpanan/$bulan*$temp);
+				$data['total'] = ceil($simpanan + ($simpanan*$temp));
+			}
+			else{
+				$data['terima'] = ceil($simpanan/$bulan*$bunga);
+				$data['jatuh_tempo'] = $simpanan + ceil($simpanan/$bulan*$bunga);
+				$data['total'] = ceil($simpanan + ($simpanan*$bunga));
+			}
 
 			$this->load->view('tempanggota/header');
 			$this->load->view('tempanggota/sidebar', $data);
