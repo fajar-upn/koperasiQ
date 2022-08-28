@@ -80,6 +80,29 @@ class Anggota extends CI_Controller{
 		}
 	}
 
+	//====================================================MENAMPILKAN TRANSAKSI=========================================================
+	public function tampil_simpanan(){
+		$data['user'] = $_SESSION['nama'];
+		$data['judul'] = "Simpanan Anggota";
+		$this->load->view('tempanggota/header');
+		$this->load->view('tempanggota/sidebar', $data);
+		$this->load->view('anggota/v_laporan_simpanan_anggota', $data);
+		$this->load->view('tempanggota/footer');
+	}
+
+	public function lihat_simpanan_anggota(){
+		$data['user'] = $_SESSION['nama'];
+		$data['id'] = $_SESSION['id_anggota'];
+		$data['tahun'] = $this->input->post('tahun');
+
+		$this->load->view('tempanggota/header');
+		$this->load->view('tempanggota/sidebar', $data);
+		$this->load->view('anggota/v_lihat_simpanan_anggota', $data);
+		$this->load->view('tempanggota/footer');
+	}
+	//================================================END MENAMPILKAN TRANSAKSI===========================================================
+
+
 	//====================================================KALKULATOR SIMULASI===========================================================
 	public function sim_simpanan(){
 
