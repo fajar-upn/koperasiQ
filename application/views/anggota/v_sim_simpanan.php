@@ -9,29 +9,41 @@
         <form action="" method="post" name="form_simulasisimpanan">
           <div class="form-row mb-4">
             <div class="col-12 col-sm-12 col-md-4">
-                <label>Bunga (%)</label>
+                <label>Bunga Per Tahun (%)</label>
                 <input type="number" class="form-control" value="10" name="bunga" readonly>
             </div>
             <div class="col-12 col-sm-12 col-md-4">
                 <label>Jumlah Simpanan yang Diinginkan (Rupiah)</label>
-                <input type="number" class="form-control" name="simpanan" required>
+                <input type="number" class="form-control" name="simpanan" min="500000" max="100000000" required>
             </div>
              <div class="col-12 col-sm-12 col-md-4">
                 <label>Jangka Waktu (Per Bulan)</label>
-                <input type="number" class="form-control" name="bulan" min="1" max="10" required>
+                <input type="number" class="form-control" name="bulan" min="1" max="12" required>
             </div>
           </div>
           <div class="row mt-1 mb-4 ml-1 mr-1" style="background: #f7f7f7;">
-            <div class="col-lg-6 col-xs-12 text-center">
+            <div class="col-lg-3 col-xs-12 text-center">
               <div class="mt-3">
-                <p class="text-center mt-1 header-desc-text">Pembayaran Per Bulan</p>
-                <h2 class="mb-3 amount-text-lg"><?= rupiah2($bayar); ?></h2>
+                <p class="text-center mt-1 header-desc-text">Total Simpanan</p>
+                <h2 class="mb-3 amount-text-lg"><?= rupiah2($simpanan); ?></h2>
               </div>
             </div>
-            <div class="col-lg-6 col-xs-12 text-center">
+            <div class="col-lg-3 col-xs-12 text-center">
               <div class="mt-3">
-                <p class="text-center mt-1 header-desc-text">Total Pinjaman</p>
-                <h2 class="mb-3 amount-text-lg"><?= rupiah2($pinjaman); ?></h2>
+                <p class="text-center mt-1 header-desc-text">Terima Per Bulan</p>
+                <h2 class="mb-3 amount-text-lg"><?= rupiah2($terima); ?></h2>
+              </div>
+            </div>
+            <div class="col-lg-3 col-xs-12 text-center">
+              <div class="mt-3">
+                <p class="text-center mt-1 header-desc-text">Terima Pada Jatuh Tempo</p>
+                <h2 class="mb-3 amount-text-lg"><?= rupiah2($jatuh_tempo); ?></h2>
+              </div>
+            </div>
+            <div class="col-lg-3 col-xs-12 text-center">
+              <div class="mt-3">
+                <p class="text-center mt-1 header-desc-text">Total Diterima</p>
+                <h2 class="mb-3 amount-text-lg"><?= rupiah2($total); ?></h2>
               </div>
             </div>
           </div>

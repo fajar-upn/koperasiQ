@@ -18,7 +18,7 @@
             </div>
              <div class="col-12 col-sm-12 col-md-4">
                 <label>Jangka Waktu (Per Bulan)</label>
-                <input type="number" class="form-control" name="bulan" min="0" max="12" required>
+                <input type="number" class="form-control" name="bulan" min="1" max="12" required>
             </div>
           </div>
           <div class="row mt-1 mb-4 ml-1 mr-1" style="background: #f7f7f7;">
