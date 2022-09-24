@@ -122,6 +122,46 @@ class Admin extends CI_Controller{
 	}
 	//==========================================AKHIR DAFTAR AKUN=============================================
 
+	//==========================================TAMBAH BERTIA=============================================
+
+	public function daftar_berita(){
+
+		$data['user'] = $_SESSION['nama'];
+		$data['judul']='Tambah Akun';
+		$data['active']='active';
+		if ($this->form_validation->run() ==  FALSE) {
+			$this->load->view('templates/header');
+			$this->load->view('templates/sidebar', $data);
+			$this->load->view('berita/v_tambah_berita');
+			$this->load->view('templates/footer');
+		}
+		else {
+			$this->session->set_flashdata('pesan_sukses','Berita Terunggah');
+			$this->M_backend->tambahDaftarAkun();
+			redirect('admin');
+		}
+	}
+	
+	public function buat_berita(){
+
+		$data['user'] = $_SESSION['nama'];
+		$data['judul']='Tambah Akun';
+		$data['active']='active';
+		if ($this->form_validation->run() ==  FALSE) {
+			$this->load->view('templates/header');
+			$this->load->view('templates/sidebar', $data);
+			$this->load->view('berita/v_tambah_berita');
+			$this->load->view('templates/footer');
+		}
+		else {
+			$this->session->set_flashdata('pesan_sukses','Berita Terunggah');
+			$this->M_backend->tambahDaftarAkun();
+			redirect('admin');
+		}
+	}
+
+	//==========================================AKHIR TAMBAH BERITA=============================================
+
 	//==========================================DATA ANGGOTA==================================================
 	public function data_anggota(){
 
