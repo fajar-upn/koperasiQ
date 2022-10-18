@@ -1,6 +1,6 @@
 <div class="content-wrapper">
-<div class="container-fluid">
-<div class="row">
+	<div class="container">
+		<div class="row" style="padding-top: 20px">
 
 	<?php if ($this->session->flashdata('flash')) : ?>
 			
@@ -1943,6 +1943,7 @@
 <?php endif ?>	
 <?php endforeach; ?>
 	</div>
+</div>
 </div>
 
 

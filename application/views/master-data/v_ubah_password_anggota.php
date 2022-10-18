@@ -1,6 +1,6 @@
 <div class="content-wrapper">
-<div class="container-fluid mb-2">
-  <div class="row">
+<div class="container">
+  <div class="row" style="padding-top: 20px">
     <div class="col-lg-12">
 
       <div class="card p-2  shadow-sm">

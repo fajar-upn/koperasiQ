@@ -1,5 +1,5 @@
 <div class="content-wrapper">
-<div class="container-fluid mb-2">
+<div class="container" style="padding-top:20px">
   <div class="row">
     <div class="col-lg-12">
 

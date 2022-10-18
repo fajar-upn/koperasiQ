@@ -530,7 +530,7 @@ class M_backend extends CI_Model {
 
 	public function id_anggota()
 	{
-		$kunci = 'A-';
+		$kunci = 'A0';
 		$this->db->like('id_anggota',$kunci);
 		$this->db->select('RIGHT(anggota.id_anggota,5) as kode', FALSE);
 		$this->db->order_by('id_anggota','DESC');

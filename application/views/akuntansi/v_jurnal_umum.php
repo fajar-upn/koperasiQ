@@ -1,6 +1,6 @@
 <div class="content-wrapper">
-<div class="container-fluid">
-
+<div class="container">
+  <div class="row" style="padding-top: 20px">
 <?php if ($this->session->flashdata('pesan_sukses')) : ?>
 			<div class="row">
 				<div class="col-8">
@@ -198,8 +198,6 @@
 						</form>
 		</div>
 	</div>
-</div>
-
 <div class="row justify-content-center mt-2">
 	<div class="col">
 	<div class="card p-2 shadow-sm">
@@ -314,6 +312,9 @@
 		</div>
 	</div>
 	</div>
+</div>
+</div>
+
 </div>
 </div>
 </div>

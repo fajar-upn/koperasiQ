@@ -1,6 +1,6 @@
 <div class="content-wrapper">
-<div class="container-fluid mb-2">
-  <div class="row">
+<div class="container">
+  <div class="row" style="padding-top: 20px">
     
     <?php if ($this->session->flashdata('pesan_sukses')) : ?>
       

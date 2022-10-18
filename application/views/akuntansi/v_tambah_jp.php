@@ -1,6 +1,7 @@
 <div class="content-wrapper">
 <!-- Begin Page Content -->
-<div class="container-fluid">
+<div class="container">
+  <div class="row" style="padding-top: 20px">
 <?php if ($this->session->flashdata('pesan_sukses')) : ?>
 			<div class="row">
 				<div class="col-8">
@@ -494,6 +495,7 @@
 		    		</div>
 		    	</div>
 		    </div> -->
+								</div>
 </div>
 </div>
 

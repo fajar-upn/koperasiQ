@@ -1,4 +1,4 @@
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini sidebar-collapse">
   <div class="wrapper">
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -12,11 +12,11 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <!-- Notifications Dropdown Menu -->
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
           <i class="fas fa-th-large"></i>
         </a>
-      </li>
+      </li> -->
       <!-- <li class="nav-item">
         <a class="nav-link" href="<?php echo base_url('anggota'); ?>" role="button">
           <i class="fas fa-user-circle"> Anggota <?php echo $user; ?></i>
@@ -39,7 +39,7 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-image: linear-gradient(to top, #08b184, #2679c2);">
     <!-- Brand Logo -->
     <a href="<?php echo base_url('anggota'); ?>" class="brand-link">
       <img src="<?php echo base_url(); ?>assets/dist/img/logokoperasi.png" alt="logokoperasi" class="brand-image">

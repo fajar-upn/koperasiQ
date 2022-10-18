@@ -1,5 +1,5 @@
 <footer class="main-footer">
-    Copyright &copy; Ayu Desitasari (193202033) | Tugas Akhir-2022
+    Copyright &copy; MudaMudi.coop
   </footer>
 
   <!-- Control Sidebar -->

@@ -469,4 +469,48 @@ class M_laporan extends CI_Model {
 		}
 	}
 
+
+	// =============================================Anggota============================================
+	public function tampil_simpanan_anggota($id_anggota){
+		$tahun = $this->input->post('tahun');
+		return $this->db->query("SELECT DISTINCT anggota.id_anggota, anggota.nama, 
+			(SELECT SUM(saldo) FROM simpanan WHERE jenis_simpanan='Simpanan Pokok' AND id_anggota='$id_anggota' AND YEAR(tanggal)='$tahun') AS simpanan_pokok,
+			(SELECT SUM(saldo) FROM simpanan WHERE jenis_simpanan='Simpanan Wajib' AND id_anggota='$id_anggota' AND YEAR(tanggal)='$tahun') AS simpanan_wajib, 
+			(SELECT SUM(saldo) FROM simpanan WHERE jenis_simpanan='Simpanan Sukarela' AND id_anggota='$id_anggota' AND YEAR(tanggal)='$tahun') AS simpanan_sukarela, 
+			(SELECT SUM(saldo) FROM simpanan WHERE jenis_simpanan='Tabungan Lebaran' AND id_anggota='$id_anggota' AND YEAR(tanggal)='$tahun') AS simpanan_lebaran, 
+			YEAR(simpanan.tanggal) AS tahun FROM `simpanan` JOIN anggota ON anggota.id_anggota=simpanan.id_anggota AND simpanan.id_anggota='$id_anggota' 
+			AND YEAR(tanggal)='$tahun'")->result_array();
+	}
+
+	public function tampil_simpanan_anggota1($id_anggota)
+	{
+		// $id_anggota = $this->input->post('id_anggota');
+		$tahun = $this->input->post('tahun');
+		return $this->db->query("SELECT * FROM simpanan WHERE id_anggota='$id_anggota' AND YEAR(tanggal)='$tahun' ORDER BY tanggal ASC")->result_array();
+	}
+
+	public function tampil_pinjaman_anggota($id_anggota){
+		// $id_anggota = $this->input->post('id_anggota');
+		$tahun = $this->input->post('tahun');
+		return $this->db->query("SELECT pinjaman.bukti_transaksi_p,anggota.nama,anggota.alamat,pinjaman.nominal,
+		pinjaman.tanggal_pinjam,pinjaman.lama_angsur,pinjaman.status_pinjam FROM pinjaman JOIN anggota ON pinjaman.id_anggota=anggota.id_anggota 
+		AND pinjaman.id_anggota='$id_anggota' AND YEAR(pinjaman.tanggal_pinjam)='$tahun'")->result_array();
+	}
+
+	public function pinjaman_anggota($id_angggota){
+		$tahun = $this->input->post('tahun');
+		return $this->db->query("SELECT pinjaman.id_pinjaman,pinjaman.id_anggota,pinjaman.nominal FROM pinjaman JOIN anggota ON pinjaman.id_anggota=anggota.id_anggota 
+		AND anggota.status='Aktif' AND pinjaman.status_pinjam='Belum Lunas' AND YEAR(pinjaman.tanggal_pinjam)='$tahun' WHERE pinjaman.id_anggota='$id_anggota'")->result_array();
+	}
+
+	public function angsuran_anggota($id_anggota){
+		$this->db->select('*');
+	    $this->db->from('angsuran');
+	    $this->db->where("DATE_FORMAT(tanggal,'%Y')", $this->input->post('tahun'));
+		$this->db->where('id_anggota', $id_anggota);
+	    $this->db->order_by('id_anggota', 'ASC');
+	    return $this->db->get()->result_array();
+	}
+	
+
 }
