@@ -8,7 +8,7 @@ class Admin extends CI_Controller{
 		$this->load->model('M_transaksi');
 		$this->load->model('M_akuntansi');
 		$this->load->model('M_laporan');
-		$this->load->model('M_akuntansi');
+		$this->load->model('M_berita');
 		$this->load->helper('authlogin');
 		$this->load->library('form_validation');
 		admin();
@@ -137,7 +137,7 @@ class Admin extends CI_Controller{
 		}
 		else {
 			$this->session->set_flashdata('pesan_sukses','Berita Terunggah');
-			$this->M_backend->tambahDaftarAkun();
+			$this->M_berita->tambahDaftarAkun();
 			redirect('admin');
 		}
 	}
@@ -145,8 +145,12 @@ class Admin extends CI_Controller{
 	public function buat_berita(){
 
 		$data['user'] = $_SESSION['nama'];
-		$data['judul']='Tambah Akun';
+		$data['judul']='Tambah Berita';
 		$data['active']='active';
+
+		$this->form_validation->set_rules('judul','Judul','required');
+		$this->form_validation->set_rules('isi','Isi Berita','required');
+
 		if ($this->form_validation->run() ==  FALSE) {
 			$this->load->view('templates/header');
 			$this->load->view('templates/sidebar', $data);
@@ -155,10 +159,11 @@ class Admin extends CI_Controller{
 		}
 		else {
 			$this->session->set_flashdata('pesan_sukses','Berita Terunggah');
-			$this->M_backend->tambahDaftarAkun();
+			$this->M_berita->insertBerita();
 			redirect('admin');
 		}
 	}
+
 
 	//==========================================AKHIR TAMBAH BERITA=============================================
 
