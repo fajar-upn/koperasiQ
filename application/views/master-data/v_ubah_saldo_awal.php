@@ -1,7 +1,7 @@
 <div class="content-wrapper">
 <!-- Begin Page Content -->
-<div class="container-fluid mb-2">
-<!--  -->
+<div class="container">
+<div class="row" style="padding-top: 20px">
           <!-- Page Heading -->
           <h1 class="h3 mb-4 text-gray-800 text-center">Ubah Saldo Awal</h1>
           	<div class="card p-3">
@@ -141,6 +141,7 @@
 		    	</div>
 		    </div>
  -->
+ </div>
 </div>
 </div>
 

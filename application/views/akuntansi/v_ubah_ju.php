@@ -1,7 +1,6 @@
 <div class="content-wrapper">
-
-<!-- Begin Page Content -->
-<div class="container-fluid">
+	<div class="container">
+		<div class="row" style="padding-top: 20px">
 
           <!-- Page Heading -->
   <h1 class="h3 mb-4 text-gray-800">Ubah Transaksi</h1>
@@ -517,7 +516,7 @@
 
 
 </form>
-
+									</div>
 </div>
 
 <script src="<?php echo base_url(); ?>assets/plugins/jquery/jquery.min.js"></script>

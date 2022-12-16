@@ -36,7 +36,7 @@
                   <div class="col">
                     <div class="row mt-2">
                       <div class="col-2">
-                         <a role="button" href="<?= base_url();?>admin/tambah_anggota" class="btn btn-success" style="width: 100%;">Tambah Data</a>
+                         <a role="button" href="<?= base_url();?>admin/tambah_anggota" class="btn btn-primary" style="width: 100%;">Tambah Data</a>
                       </div>
                       <div class="col-2">
                          <a role="button" href="<?= base_url();?>admin/cetak_anggota" class="btn btn-secondary" target="_blank"><i class="fa fa-file-pdf"></i> Cetak</a>

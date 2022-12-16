@@ -1,6 +1,6 @@
 <div class="content-wrapper">
-<div class="container-fluid mb-2">
-  <div class="row">
+<div class="container">
+  <div class="row" style="padding-top: 20px">
     <div class="col-lg-12">
 
       <div class="card p-2  shadow-sm">
@@ -60,11 +60,11 @@
             </div>
           </div>
           <input type="text" class="form-control" name="status" value="Aktif" required hidden>
-          <div class="text-center">
+          <div class="text-right">
             <button type="submit" name="tambah" class="btn btn-success" style="width: 200px;">Input</button>
+            <a class="btn btn-primary" href="<?= base_url('admin/data_anggota');?>">Kembali</a>
           </div>
           <div class="text-center mt-2">
-            <a class="btn btn-primary" href="<?= base_url('admin/data_anggota');?>">Kembali</a>
           </div>
         </form>
       </div>

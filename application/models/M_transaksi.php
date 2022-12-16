@@ -463,6 +463,5 @@ class M_transaksi extends CI_Model {
 			$kode_at = "JP-".$kodemax;
 			return $kode_at;
 		}
-	}
-
+	}		
 }

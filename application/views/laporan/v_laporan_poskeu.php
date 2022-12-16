@@ -1,167 +1,165 @@
 <div class="content-wrapper">
-<div class="container-fluid">
-	<div class="shadow-sm card mb-2 p-2">
-			<div class="row">
-				<div class="col  text-center">
-					<h3 class="font-weight-bold">Laporan Posisi Keuangan</h3>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col text-center">
-					<?php if ($this->input->post('bulan_post') && $this->input->post('tahun_post')): ?>
-						<h5><?= $nama_bulan?> <?= $tahun?></h5>
-					<?php elseif ($this->input->post('tahun_post')) : ?>
-						<h5><?=  "Tahun ".$tahun; ?></h5>
-					<?php elseif ($this->input->post('tanggal_awal')) : ?>
-						<h5><?= $this->input->post('tanggal_awal')." s.d ".$this->input->post('tanggal_akhir') ?></h5>
-					<?php else: ?>
-						<h5><?= $nama_bulan?> <?= $tahun ?></h5>
-					<?php endif ?>
-				</div>
-				
-			</div>
-			<hr class="m-0 mb-2">
-          	<div class="row">
-          			<div class="col-1">
-          			<form method="post" action="<?= base_url('admin/cetak_poskeu');?>" target="_blank">
-          					<!-- <input type="text" name="akun" id="akun" value="" hidden> -->
-          					<?php if ($this->input->post('tanggal_awal') && $this->input->post('akun')) : ?>
-          						<input type="text" name="tanggal_awal" value="<?= $t_aw; ?>" hidden>
-								<input type="text" name="tanggal_akhir" value="<?=  $t_ak; ?>" hidden>
-								<input type="text" name="akun" value="<?= $this->input->post('akun'); ?>" hidden>
-								<input type="text" name="kode_akun" value="<?= $this->input->post('kode_akun'); ?>" hidden>
-							<?php elseif ($this->input->post('tahun_post') && $this->input->post('akun')) : ?>
-								<input type="text" name="tahun_post" value="<?=  $this->input->post('tahun_post'); ?>" hidden>
-								<input type="text" name="akun" value="<?= $this->input->post('akun'); ?>" hidden>
-								<input type="text" name="kode_akun" value="<?= $this->input->post('kode_akun'); ?>" hidden>
-							<?php elseif ( $this->input->post('akun') && $this->input->post('bulan_post') && $this->input->post('tahun_post')): ?>
-								<input type="text" name="akun" value="<?= $this->input->post('akun'); ?>" hidden>
-								<input type="text" name="kode_akun" value="<?= $this->input->post('kode_akun'); ?>" hidden>
-								<input type="text" name="tanggal_awal" value="<?= $t_aw; ?>" hidden>
-								<input type="text" name="tanggal_akhir" value="<?=  $t_ak; ?>" hidden>
-
-							<?php elseif ($this->input->post('tanggal_awal')): ?>
-								<input type="text" name="tanggal_awal" value="<?= $this->input->post('tanggal_awal'); ?>" hidden>
-								<input type="text" name="tanggal_akhir" value="<?=  $this->input->post('tanggal_akhir'); ?>" hidden>
-							<?php elseif ($this->input->post('bulan_post') && $this->input->post('tahun_post')) : ?>
-								<input type="text" name="bulan_post" value="<?= $this->input->post('bulan_post'); ?>" hidden>
-								<input type="text" name="tahun_post" value="<?=  $this->input->post('tahun_post'); ?>" hidden>
+	<div class="container">
+		<div class="row" style="padding-top: 20px">
+			<div class="shadow-sm card mb-2 p-2">
+					<div class="row">
+						<div class="col  text-center">
+							<h3 class="font-weight-bold">Laporan Posisi Keuangan</h3>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col text-center">
+							<?php if ($this->input->post('bulan_post') && $this->input->post('tahun_post')): ?>
+								<h5><?= $nama_bulan?> <?= $tahun?></h5>
 							<?php elseif ($this->input->post('tahun_post')) : ?>
-							
-								<input type="text" name="tahun_post" value="<?=  $this->input->post('tahun_post'); ?>" hidden>
+								<h5><?=  "Tahun ".$tahun; ?></h5>
+							<?php elseif ($this->input->post('tanggal_awal')) : ?>
+								<h5><?= $this->input->post('tanggal_awal')." s.d ".$this->input->post('tanggal_akhir') ?></h5>
 							<?php else: ?>
-								<input type="text" name="bulan_post" hidden disabled>
-								<input type="text" name="tahun_post" hidden disabled>
-								<input type="text" name="tanggal_awal" hidden disabled>
-								<input type="text" name="tanggal_akhir" hidden disabled>
+								<h5><?= $nama_bulan?> <?= $tahun ?></h5>
 							<?php endif ?>
-          			<button type="submit" class="btn btn-secondary" style=""><i class="d-none d-sm-inline fa fa-file-pdf mr-1"></i>Cetak</button>
-
-          			</form>
-          		</div>
-          		<div class="col-2">
-				     <a class="btn btn-danger" href="<?= base_url('admin/poskeu');?>">Reset</a>
-				</div>
-          		
-          
-          	<div class="row">
-          		<div class="col offset-3">
-          			<?= form_error ('tahun_post','<small class="text-danger pl-3">','</small>'); ?> 
-          		</div>
-          	</div>
-
-		</div>
-		<div class="row mt-2">	
-		<div class="col-12 col-xl-6">
-			<form method="post" class="form-row align-items-center">
-				<div class="col-12 col-sm-5 mb-2 mb-xl-0">
-						<div class="form">
-						    <input type="date" class="form-control" name="tanggal_awal" value="<?= $this->input->post('tanggal_awal') ?>">
 						</div>
-				</div>
-				<div class="d-none d-sm-block" style="width: 27px;">
-				s/d
-				</div>
-				<div class="col-12 col-sm-5 mb-2 mb-xl-0">
-					  	<div class="form">
-					    	<input type="date" class="form-control" name="tanggal_akhir" value="<?= $this->input->post('tanggal_akhir') ?>">
-					  	</div>
-				</div>
-				<div class="col mb-2 mb-xl-0">
-					 	<div class="form ">
-					  		<button type="submit" class="btn btn-dark"><i class="fa fa-search"></i></button>
-					  	</div>
-				</div>
-							  
-			</form> 
-		</div>
-		<div class="col-12 col-xl-6">
-			<form action="" method="post" class="form-row align-items-center">
-						<div class="col-10 mb-2 mb-sm-0 col-sm-5">
-							<div class="form">
-								<select class="custom-select" id="bulan_post" name="bulan_post" disabled>
-								    <option selected>Pilih Bulan</option>
-								<?php foreach ($dd_bulan as $dd_bulan): ?>
-									<?php if ($dd_bulan['angka'] == $this->input->post('bulan_post')): ?>
-										<option value="<?= $dd_bulan['angka'] ?>" selected><?= $dd_bulan['bulan'] ?></option>
-									<?php else: ?>
-										<option value="<?= $dd_bulan['angka'] ?>"><?= $dd_bulan['bulan'] ?></option>
-									<?php endif ?>
-								<?php endforeach ?>
-								   
-						  		</select>
-							</div>									    			
-						</div>
-				
-		          		<div class=""  style="width: 27px;">
-	          				<div class="form-check mb-4">
-							  <input class="form-check-input" type="checkbox" value="" id="enable_bulan">
-							</div>
-						</div>	
-										  	
-						<div class="col-12 mb-2 mb-sm-0 col-sm-5">
-							<div class="form ">
-					
-									<select class="custom-select" id="tahun_post" name="tahun_post">
-										<option selected value="">Pilih Tahun</option>
-
-									<?php 
-										$i_tahun = 5;
-										$tahun_ini = date("Y");
-										for ($i=0; $i < $i_tahun ; $i++) : ?>
-											<?php if ($tahun_ini-$i == $this->input->post('tahun_post')): ?>
-												<option value="<?= $tahun_ini-$i; ?>" selected><?= $tahun_ini-$i; ?></option>
-											<?php else: ?>
-												<option value="<?= $tahun_ini-$i; ?>" ><?= $tahun_ini-$i; ?></option>
-											<?php endif ?>
-										
-									<?php endfor; ?>
-									    
-							  		</select>   
 						
-						  		
+					</div>
+					<hr class="m-0 mb-2">
+					<div class="row">
+							<div class="col-1">
+							<form method="post" action="<?= base_url('admin/cetak_poskeu');?>" target="_blank">
+									<!-- <input type="text" name="akun" id="akun" value="" hidden> -->
+									<?php if ($this->input->post('tanggal_awal') && $this->input->post('akun')) : ?>
+										<input type="text" name="tanggal_awal" value="<?= $t_aw; ?>" hidden>
+										<input type="text" name="tanggal_akhir" value="<?=  $t_ak; ?>" hidden>
+										<input type="text" name="akun" value="<?= $this->input->post('akun'); ?>" hidden>
+										<input type="text" name="kode_akun" value="<?= $this->input->post('kode_akun'); ?>" hidden>
+									<?php elseif ($this->input->post('tahun_post') && $this->input->post('akun')) : ?>
+										<input type="text" name="tahun_post" value="<?=  $this->input->post('tahun_post'); ?>" hidden>
+										<input type="text" name="akun" value="<?= $this->input->post('akun'); ?>" hidden>
+										<input type="text" name="kode_akun" value="<?= $this->input->post('kode_akun'); ?>" hidden>
+									<?php elseif ( $this->input->post('akun') && $this->input->post('bulan_post') && $this->input->post('tahun_post')): ?>
+										<input type="text" name="akun" value="<?= $this->input->post('akun'); ?>" hidden>
+										<input type="text" name="kode_akun" value="<?= $this->input->post('kode_akun'); ?>" hidden>
+										<input type="text" name="tanggal_awal" value="<?= $t_aw; ?>" hidden>
+										<input type="text" name="tanggal_akhir" value="<?=  $t_ak; ?>" hidden>
+
+									<?php elseif ($this->input->post('tanggal_awal')): ?>
+										<input type="text" name="tanggal_awal" value="<?= $this->input->post('tanggal_awal'); ?>" hidden>
+										<input type="text" name="tanggal_akhir" value="<?=  $this->input->post('tanggal_akhir'); ?>" hidden>
+									<?php elseif ($this->input->post('bulan_post') && $this->input->post('tahun_post')) : ?>
+										<input type="text" name="bulan_post" value="<?= $this->input->post('bulan_post'); ?>" hidden>
+										<input type="text" name="tahun_post" value="<?=  $this->input->post('tahun_post'); ?>" hidden>
+									<?php elseif ($this->input->post('tahun_post')) : ?>
+									
+										<input type="text" name="tahun_post" value="<?=  $this->input->post('tahun_post'); ?>" hidden>
+									<?php else: ?>
+										<input type="text" name="bulan_post" hidden disabled>
+										<input type="text" name="tahun_post" hidden disabled>
+										<input type="text" name="tanggal_awal" hidden disabled>
+										<input type="text" name="tanggal_akhir" hidden disabled>
+									<?php endif ?>
+							<button type="submit" class="btn btn-secondary" style=""><i class="d-none d-sm-inline fa fa-file-pdf mr-1"></i>Cetak</button>
+
+							</form>
+						</div>
+						<div class="col-2">
+							<a class="btn btn-danger" href="<?= base_url('admin/poskeu');?>">Reset</a>
+						</div>
+						
+				
+					<div class="row">
+						<div class="col offset-3">
+							<?= form_error ('tahun_post','<small class="text-danger pl-3">','</small>'); ?> 
+						</div>
+					</div>
+
+				</div>
+				<div class="row mt-2">	
+				<div class="col-12 col-xl-6">
+					<form method="post" class="form-row align-items-center">
+						<div class="col-12 col-sm-5 mb-2 mb-xl-0">
+								<div class="form">
+									<input type="date" class="form-control" name="tanggal_awal" value="<?= $this->input->post('tanggal_awal') ?>">
+								</div>
+						</div>
+						<div class="d-none d-sm-block" style="width: 27px;">
+						s/d
+						</div>
+						<div class="col-12 col-sm-5 mb-2 mb-xl-0">
+								<div class="form">
+									<input type="date" class="form-control" name="tanggal_akhir" value="<?= $this->input->post('tanggal_akhir') ?>">
+								</div>
+						</div>
+						<div class="col mb-2 mb-xl-0">
+								<div class="form ">
+									<button type="submit" class="btn btn-dark"><i class="fa fa-search"></i></button>
+								</div>
+						</div>
+									
+					</form> 
+				</div>
+				<div class="col-12 col-xl-6">
+					<form action="" method="post" class="form-row align-items-center">
+								<div class="col-10 mb-2 mb-sm-0 col-sm-5">
+									<div class="form">
+										<select class="custom-select" id="bulan_post" name="bulan_post" disabled>
+											<option selected>Pilih Bulan</option>
+										<?php foreach ($dd_bulan as $dd_bulan): ?>
+											<?php if ($dd_bulan['angka'] == $this->input->post('bulan_post')): ?>
+												<option value="<?= $dd_bulan['angka'] ?>" selected><?= $dd_bulan['bulan'] ?></option>
+											<?php else: ?>
+												<option value="<?= $dd_bulan['angka'] ?>"><?= $dd_bulan['bulan'] ?></option>
+											<?php endif ?>
+										<?php endforeach ?>
+										
+										</select>
+									</div>									    			
+								</div>
+						
+								<div class=""  style="width: 27px;">
+									<div class="form-check mb-4">
+									<input class="form-check-input" type="checkbox" value="" id="enable_bulan">
+									</div>
+								</div>	
+													
+								<div class="col-12 mb-2 mb-sm-0 col-sm-5">
+									<div class="form ">
+							
+											<select class="custom-select" id="tahun_post" name="tahun_post">
+												<option selected value="">Pilih Tahun</option>
+
+											<?php 
+												$i_tahun = 5;
+												$tahun_ini = date("Y");
+												for ($i=0; $i < $i_tahun ; $i++) : ?>
+													<?php if ($tahun_ini-$i == $this->input->post('tahun_post')): ?>
+														<option value="<?= $tahun_ini-$i; ?>" selected><?= $tahun_ini-$i; ?></option>
+													<?php else: ?>
+														<option value="<?= $tahun_ini-$i; ?>" ><?= $tahun_ini-$i; ?></option>
+													<?php endif ?>
+												
+											<?php endfor; ?>
+												
+											</select>   
+								
+										
+									</div>
+								</div>
+										
+										<div class="col">
+											<div class="form">
+												<button type="submit" class="btn btn-dark "><i class="fa fa-search"></i></button>
+											</div>
+										</div>				  
+								</form>
+				</div>
+
+					
+						<div class="row">
+							<div class="col offset-3">
+								<?= form_error ('tahun_post','<small class="text-danger pl-3">','</small>'); ?> 
 							</div>
 						</div>
-								 
-								<div class="col">
-									<div class="form">
-										<button type="submit" class="btn btn-dark "><i class="fa fa-search"></i></button>
-									</div>
-								</div>				  
-						</form>
-		</div>
 
-	          
-	          	<div class="row">
-	          		<div class="col offset-3">
-	          			<?= form_error ('tahun_post','<small class="text-danger pl-3">','</small>'); ?> 
-	          		</div>
-	          	</div>
-
-	</div>   					  			 
-	</div>
-    
-
+			</div>   	
 	<div class="row justify-content-center">
 		<div class="col">
 		<div class="card p-2 shadow-sm">
@@ -722,7 +720,11 @@
 			</div>
 		</div>
 		</div>
+	</div>				  			 
 	</div>
+</div>
+    
+
 
 </div>
 </div>

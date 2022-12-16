@@ -1,6 +1,7 @@
 <div class="content-wrapper">
 <!-- Begin Page Content -->
-<div class="container-fluid">
+<div class="container">
+  <div class="row" style="padding-top: 20px">
 <?php if ($this->session->flashdata('pesan_sukses')) : ?>
 			<div class="row">
 				<div class="col-6">
@@ -16,9 +17,9 @@
           <!-- Page Heading -->
           <h1 class="col-md-12 h3 mb-4 text-gray-800">Saldo Awal</h1>
           <div class="row">
-          	<div class="col-xl-4 col-md-12 mb-2">
+          	<div class="col-xl-6 col-md-12 mb-2">
 	          	<div class="card p-2">
-	          		<div class="row">	
+	          		<div class="row text-right">	
 		          		<div class="col">
 		          			<a role="button" class="btn btn-success" href="<?= base_url();?>admin/tambah_saldoawal">Tambah Data</a>
 		          		</div>
@@ -40,7 +41,7 @@
 	          		</div>
 	          	</div>
           	</div>
-          	<div class="col">
+          	<div class="col-6">
           	
 
 	          		<?php 
@@ -142,7 +143,7 @@
 		<div class="col text-center"><h5>Data Tidak Ditemukan, Silakan Coba Lagi</h5></div>
 	</div>
 <?php endif ?>
-
+</div>
 </div>
 </div>
 

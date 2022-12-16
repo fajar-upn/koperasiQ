@@ -1,4 +1,4 @@
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini sidebar-collapse">
   <div class="wrapper">
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -32,7 +32,7 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-image: linear-gradient(to top, #08b184, #2679c2);">
     <!-- Brand Logo -->
     <a href="<?php echo base_url('admin'); ?>" class="brand-link">
       <img src="<?php echo base_url(); ?>assets/dist/img/logokoperasi.png" alt="logokoperasi" class="brand-image">
@@ -44,7 +44,8 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <li class="nav-item">
+          
+					<li class="nav-item">
             <a href="<?php echo base_url('admin'); ?>" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -53,6 +54,14 @@
             </a>
           </li>
           
+				<!-- <li class="nav-item">
+            <a href="<?php echo base_url('admin/buat_berita'); ?>" class="nav-link">
+              <i class="nav-icon fas fa-fw fa-cog"></i>
+              <p>
+                Master Data
+              </p>
+            </a>
+          </li> -->
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-fw fa-cog"></i>

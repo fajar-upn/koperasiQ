@@ -1,100 +1,100 @@
 <div class="content-wrapper">
-<div class="container-fluid mb-2">
-  <div class="row">
-    <div class="col-lg-8">
+	<div class="container">
+		<div class="row" style="padding-top: 20px">
+			<div class="col-lg-12">
 
-      <div class="card p-2  shadow-sm">
-        <h3 class="text-center">Input Data</h3>
-        <hr>
-        <form action="<?= base_url('admin/tambah_daftarakun') ?>" method="post" name="form_tambahakun">
-          <div class="form-row">
-            <div class="form-group col-lg-6">
-              <h5>Pos Laporan</h3>
-                <select class="form-control" name="pos_laporan" id="pos_laporan" onchange="nonaktifKode()">
-                  <option selected>Pilih...</option>
-                  <option value="Laporan Posisi Keuangan">Laporan Posisi Keuangan</option>
-                  <option value="Laporan Perhitungan Hasil Usaha">Laporan Perhitungan Hasil Usaha</option>
-                </select>
-            </div>
-            <div class="form-group col-lg-6">
+				<div class="card p-2 shadow-sm">
+					<h3 class="text-center">Input Data</h3>
+					<hr>
+					<form action="<?= base_url('admin/tambah_daftarakun') ?>" method="post" name="form_tambahakun">
+						<div class="form-row">
+							<div class="form-group col-lg-6">
+								<h5>Pos Laporan</h3>
+									<select class="form-control" name="pos_laporan" id="pos_laporan" onchange="nonaktifKode()">
+										<option selected>Pilih...</option>
+										<option value="Laporan Posisi Keuangan">Laporan Posisi Keuangan</option>
+										<option value="Laporan Perhitungan Hasil Usaha">Laporan Perhitungan Hasil Usaha</option>
+									</select>
+							</div>
+							<div class="form-group col-lg-6">
 
-              <h5 style="display: none;" id="pos_label_neraca">Pos Akun Posisi Keuangan</h5>
-              <h5 style="display: none;" id="pos_label_labarugi">Pos Akun Laporan Perhitungan Hasil Usaha</h5>
+								<h5 style="display: none;" id="pos_label_neraca">Pos Akun Posisi Keuangan</h5>
+								<h5 style="display: none;" id="pos_label_labarugi">Pos Akun Laporan Perhitungan Hasil Usaha</h5>
 
-              <select class="form-control" name="pos_akun" id="pos_akun_labarugi" hidden onchange="nonaktifKode()">
-                <option selected>Pilih...</option>
-                <option value="Pendapatan">Pendapatan</option>
-                <option value="Beban">Beban</option>
-                <option value="Pajak">Pajak</option>
-              </select>
+								<select class="form-control" name="pos_akun" id="pos_akun_labarugi" hidden onchange="nonaktifKode()">
+									<option selected>Pilih...</option>
+									<option value="Pendapatan">Pendapatan</option>
+									<option value="Beban">Beban</option>
+									<option value="Pajak">Pajak</option>
+								</select>
 
-              <select class="form-control" name="pos_akun" id="pos_akun_neraca" hidden onchange="nonaktifnr()">
-                <option selected>Pilih...</option>
-                <option value="Aset Lancar">Aset Lancar</option>
-                <option value="Aset Tetap">Aset Tetap</option>
-                <option value="Kewajiban">Kewajiban</option>
-                <option value="Ekuitas">Ekuitas</option>
-              </select>
+								<select class="form-control" name="pos_akun" id="pos_akun_neraca" hidden onchange="nonaktifnr()">
+									<option selected>Pilih...</option>
+									<option value="Aset Lancar">Aset Lancar</option>
+									<option value="Aset Tetap">Aset Tetap</option>
+									<option value="Kewajiban">Kewajiban</option>
+									<option value="Ekuitas">Ekuitas</option>
+								</select>
 
-            </div>
-          </div>
+							</div>
+						</div>
 
-          <div class="form-row">
+						<div class="form-row">
 
-            <div class="form-group col-lg-6">
-              <h5>Kode Akun</h5>
-              <input type="text" class="form-control" name="kode_akun" id="kode_al" value="<?= $kode_al; ?>" readonly disabled>
-              <small class="form-text text-danger"><?= form_error('akun'); ?></small>
-              <input type="text" class="form-control" name="kode_akun" id="kode_at" value="<?= $kode_at; ?>" hidden readonly disabled>
-              <small class="form-text text-danger"><?= form_error('akun'); ?></small>
-              <input type="text" class="form-control" name="kode_akun" id="kode_k" value="<?= $kode_k; ?>" hidden readonly disabled>
-              <small class="form-text text-danger"><?= form_error('akun'); ?></small>
-              <input type="text" class="form-control" name="kode_akun" id="kode_ek" value="<?= $kode_ek; ?>" hidden readonly disabled>
-              <small class="form-text text-danger"><?= form_error('akun'); ?></small>
-              <input type="text" class="form-control" name="kode_akun" id="kode_p" value="<?= $kode_p; ?>" hidden readonly disabled>
-              <small class="form-text text-danger"><?= form_error('akun'); ?></small>
-              <input type="text" class="form-control" name="kode_akun" id="kode_b" value="<?= $kode_b; ?>" hidden readonly disabled>
-              <small class="form-text text-danger"><?= form_error('akun'); ?></small>
-              <input type="text" class="form-control" name="kode_akun" id="kode_pjk" value="<?= $kode_pjk; ?>" hidden readonly disabled>
-              <small class="form-text text-danger"><?= form_error('akun'); ?></small>
-
-
-            </div>
-
-            <div class="form-group col-lg-6">
-              <h5>Saldo Normal</h5>
-              <?php
-              $data = ['Debit', 'Kredit'];
-              ?>
-              <select type="text" class="form-control" name="saldo_normal" id="saldo_normal">
-                <option value="" selected>-- Pilih Saldo Normal --</option>
-                <?php foreach ($data as $d) : ?>
-                  <option value="<?= $d; ?>"><?= $d ?></option>
-                <?php endforeach ?>
-              </select>
-
-            </div>
+							<div class="form-group col-lg-6">
+								<h5>Kode Akun</h5>
+								<input type="text" class="form-control" name="kode_akun" id="kode_al" value="<?= $kode_al; ?>" readonly disabled>
+								<small class="form-text text-danger"><?= form_error('akun'); ?></small>
+								<input type="text" class="form-control" name="kode_akun" id="kode_at" value="<?= $kode_at; ?>" hidden readonly disabled>
+								<small class="form-text text-danger"><?= form_error('akun'); ?></small>
+								<input type="text" class="form-control" name="kode_akun" id="kode_k" value="<?= $kode_k; ?>" hidden readonly disabled>
+								<small class="form-text text-danger"><?= form_error('akun'); ?></small>
+								<input type="text" class="form-control" name="kode_akun" id="kode_ek" value="<?= $kode_ek; ?>" hidden readonly disabled>
+								<small class="form-text text-danger"><?= form_error('akun'); ?></small>
+								<input type="text" class="form-control" name="kode_akun" id="kode_p" value="<?= $kode_p; ?>" hidden readonly disabled>
+								<small class="form-text text-danger"><?= form_error('akun'); ?></small>
+								<input type="text" class="form-control" name="kode_akun" id="kode_b" value="<?= $kode_b; ?>" hidden readonly disabled>
+								<small class="form-text text-danger"><?= form_error('akun'); ?></small>
+								<input type="text" class="form-control" name="kode_akun" id="kode_pjk" value="<?= $kode_pjk; ?>" hidden readonly disabled>
+								<small class="form-text text-danger"><?= form_error('akun'); ?></small>
 
 
-          </div>
-          <div class="form-row">
-            <div class="form-group col-lg-6">
-              <h5>Akun Perkiraan</h5>
-              <input type="text" class="form-control" name="akun" id="akun" value="<?= set_value('akun'); ?>">
-            </div>
+							</div>
 
-          </div>
-          <div class="text-center">
-            <button type="submit" name="tambah" class="btn btn-success" style="width: 200px;">Input</button>
-          </div>
-          <div class="text-center mt-2">
-            <a class="btn btn-primary" href="<?= base_url('admin/daftar_akun');?>">Kembali</a>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
+							<div class="form-group col-lg-6">
+								<h5>Saldo Normal</h5>
+								<?php
+								$data = ['Debit', 'Kredit'];
+								?>
+								<select type="text" class="form-control" name="saldo_normal" id="saldo_normal">
+									<option value="" selected>-- Pilih Saldo Normal --</option>
+									<?php foreach ($data as $d) : ?>
+										<option value="<?= $d; ?>"><?= $d ?></option>
+									<?php endforeach ?>
+								</select>
+
+							</div>
+
+
+						</div>
+						<div class="form-row">
+							<div class="form-group col-lg-6">
+								<h5>Akun Perkiraan</h5>
+								<input type="text" class="form-control" name="akun" id="akun" value="<?= set_value('akun'); ?>">
+							</div>
+
+						</div>
+						<div class="text-right">
+							<button type="submit" name="tambah" class="btn btn-success" style="width: 200px;">Input</button>
+							<a class="btn btn-primary" href="<?= base_url('admin/daftar_akun');?>">Kembali</a>
+						</div>
+						<div class="text-center mt-2">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
 <script language="javascript">

@@ -80,6 +80,111 @@ class Anggota extends CI_Controller{
 		}
 	}
 
+	//====================================================MENAMPILKAN TRANSAKSI=========================================================
+	public function tampil_simpanan(){
+		$data['user'] = $_SESSION['nama'];
+		$data['judul'] = "Simpanan Anggota";
+		$this->load->view('tempanggota/header');
+		$this->load->view('tempanggota/sidebar', $data);
+		$this->load->view('anggota/v_laporan_anggota', $data);
+		$this->load->view('tempanggota/footer');
+	}
+
+	public function lihat_simpanan_anggota(){
+		$data['user'] = $_SESSION['nama'];
+		$data['id'] = $_SESSION['id_anggota'];
+		$data['tahun'] = $this->input->post('tahun');
+		$id_anggota = $_SESSION['id_anggota'];
+		$data['anggota'] = $this->M_laporan->tampil_simpanan_anggota($id_anggota);
+		$data['anggota1'] = $this->M_laporan->tampil_simpanan_anggota1($id_anggota);
+		if ($data['anggota']==NULL) {
+			$anggota = $this->M_backend->get_id_anggota($id_anggota);
+			$flag = array();
+			array_push($flag, array("tahun" => $this->input->post('tahun'),"id_anggota" => $anggota['id_anggota'], "nama" => $anggota['nama'], "simpanan_pokok" => 0, "simpanan_wajib" => 0, "simpanan_sukarela" => 0, "simpanan_lebaran" => 0));
+			$data['anggota'] = $flag;
+		}
+
+		$this->load->view('tempanggota/header');
+		$this->load->view('tempanggota/sidebar', $data);
+		$this->load->view('anggota/v_lihat_simpanan_anggota', $data);
+		$this->load->view('tempanggota/footer');
+	}
+
+	public function lihat_pinjaman_anggota(){
+		$data['user'] = $_SESSION['nama'];
+		$data['id'] = $_SESSION['id_anggota'];
+		$data['tahun'] = $this->input->post('tahun');
+		$id_anggota = $_SESSION['id_anggota'];
+		$data['anggota'] = $this->M_laporan->tampil_pinjaman_anggota($id_anggota);
+
+		$this->load->view('tempanggota/header');
+		$this->load->view('tempanggota/sidebar', $data);
+		$this->load->view('anggota/v_lihat_pinjaman_anggota', $data);
+		$this->load->view('tempanggota/footer');
+	}
+
+	public function lihat_angsuran_anggota(){
+		$data['user'] = $_SESSION['nama'];
+		$data['id'] = $_SESSION['id_anggota'];
+		$data['tahun'] = $this->input->post('tahun');
+		$id_anggota = $_SESSION['id_anggota'];
+		// $status 
+		$pinjaman = $this->M_laporan->lihat_pinjaman($id_anggota);
+		$angsuran = $this->M_laporan->lihat_angsuran($id_anggota);
+
+		$flag = array();
+		$total = array();
+		$sumtotal=0;$sumangsur=0;$sumjasa=0;
+
+		if ($pinjaman==NULL) {
+			array_push($total, array("sumtotal" => $sumtotal, "sumangsur" => $sumangsur, "sumjasa" => $sumjasa));
+			$data['anggota'] = $flag;
+			$data['total'] = $total;
+		}else if ($pinjaman!=NULL) {
+			// for ($i=0; $i<count($anggota); $i++) { 
+				if ($anggota[$i]['status']=='Aktif') {
+					$query = $this->M_laporan->getpinjamanbyID($anggota[$i]['id_anggota']);
+					if ($query==NULL) {
+						array_push($flag, array("tahun" => $this->input->post('tahun'),"id_anggota" => $anggota[$i]['id_anggota'], "nama" => $anggota[$i]['nama'], "total_pinjaman" => 0, "angsuran_pokok" => 0, "jasa" => 0, "angsuran_ke" => 0));
+					}
+					else{
+						for ($j=0; $j<count($pinjaman); $j++) { 
+							if ($anggota[$i]['id_anggota']==$pinjaman[$j]['id_anggota']) {
+								$tangsur=0;$nangsur=0;$jasa=0;
+								for ($k=0; $k<count($angsuran); $k++) { 
+									if ($pinjaman[$j]['id_pinjaman']==$angsuran[$k]['id_pinjaman']) {
+										$tangsur++;
+										$nangsur = $angsuran[$k]['nominal'];
+										$jasa = (float) $angsuran[$k]['jasa']/100;
+									}
+								}
+								$sisajasa = $pinjaman[$j]['nominal']*$jasa*$tangsur;
+								$angsuran_pokok = ($tangsur*($nangsur-($pinjaman[$j]['nominal']*$jasa)));
+								array_push($flag, array("tahun" => $this->input->post('tahun'),"id_anggota" => $anggota[$i]['id_anggota'], "nama" => $anggota[$i]['nama'], "total_pinjaman" => $pinjaman[$j]['nominal'], "angsuran_pokok" => $angsuran_pokok, "jasa" => $sisajasa, "angsuran_ke" => $tangsur));
+								$sumtotal+=$pinjaman[$j]['nominal'];
+								$sumangsur+=$angsuran_pokok;
+								$sumjasa+=$sisajasa;
+							}
+						}
+					}
+				}
+				else if ($anggota[$i]['status']=='Tidak Aktif') {
+					array_push($flag, array("tahun" => $this->input->post('tahun'),"id_anggota" => $anggota[$i]['id_anggota'], "nama" => $anggota[$i]['nama'], "total_pinjaman" => 0, "angsuran_pokok" => 0, "jasa" => 0, "angsuran_ke" => 0));
+				}
+			// }
+			array_push($total, array("sumtotal" => $sumtotal, "sumangsur" => $sumangsur, "sumjasa" => $sumjasa));
+			$data['anggota'] = $flag;
+			$data['total'] = $total;
+		}
+
+		$this->load->view('tempanggota/header');
+		$this->load->view('tempanggota/sidebar', $data);
+		$this->load->view('anggota/v_lihat_angsuran_anggota', $data);
+		$this->load->view('tempanggota/footer');
+	}
+	//================================================END MENAMPILKAN TRANSAKSI===========================================================
+
+
 	//====================================================KALKULATOR SIMULASI===========================================================
 	public function sim_simpanan(){
 
